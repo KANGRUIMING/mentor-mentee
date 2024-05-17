@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="header">
+    <text class="title">导师选择评系统</text>
+  </view>
+  <view class="content">
+    <image src="/images/student_study.png" class="main-image"></image>
+    <button class="search-btn" bindtap="onSearchTap">搜索导师信息</button>
+  </view>
+</view>

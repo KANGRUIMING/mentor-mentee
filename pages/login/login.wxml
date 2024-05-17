@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="header">
+    <image src="/images/logo.png" class="logo"></image>
+    <text class="title">授权登录</text>
+    <text class="subtitle">申请获取以下权限</text>
+    <text class="permission">获得您的公开信息（昵称、头像等）</text>
+  </view>
+  <view class="buttons">
+    <button class="btn" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" data-role="teacher">
+      <image src="/images/teacher.png" class="icon"></image>
+      <text>我是老师</text>
+    </button>
+    <button class="btn" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" data-role="student">
+      <image src="/images/student.png" class="icon"></image>
+      <text>我是学生</text>
+    </button>
+  </view>
+</view>

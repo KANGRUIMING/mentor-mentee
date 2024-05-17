@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/login/login",
+
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/teacher/home/home",
+    "pages/student/home/home",
+    "pages/main/main" 
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "主页信息"
+      },
+      {
+        "pagePath": "pages/teacher/home/home",
+        "text": "导师信息"
+      },
+      {
+        "pagePath": "pages/student/home/home",
+        "text": "我的信息"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
