@@ -1,4 +1,46 @@
 Page({
+    onLoad: function() {
+      const openid = wx.getStorageSync('openid');
+      if (openid) {
+        // 本地已有 openid，检查用户是否已经注册
+        wx.request({
+          url: 'http://localhost:3000/checkuser',
+          method: 'POST',
+          data: {
+            openid: openid
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: res => {
+            if (res.data.exists) {
+              // 用户已经注册，直接登录
+              wx.showToast({
+                title: '登录成功',
+                icon: 'success',
+                duration: 2000
+              });
+              // 跳转到主页面
+              wx.switchTab({
+                url: '/pages/main/main'
+              });
+            } else {
+              // 本地有 openid 但用户未注册，重新登录
+              wx.removeStorageSync('openid');
+            }
+          },
+          fail: error => {
+            console.error('检查用户失败', error);
+            wx.showToast({
+              title: '登录失败',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        });
+      }
+    },
+    
     onGetUserInfo: function(e) {
       const role = e.currentTarget.dataset.role;
       if (e.detail.userInfo) {
@@ -20,15 +62,43 @@ Page({
                 const openid = res.data.openid;
                 wx.setStorageSync('openid', openid);
   
-                // 存储用户角色和信息
-                wx.setStorageSync('userInfo', {
-                  ...e.detail.userInfo,
-                  role: role
-                });
-  
-                // 跳转到信息填写页面
-                wx.navigateTo({
-                  url: `/pages/userInfo/userInfo?role=${role}&openid=${openid}`
+                // 检查用户是否已经注册
+                wx.request({
+                  url: 'http://localhost:3000/checkuser', // 你的检查用户接口地址
+                  method: 'POST', // 使用 POST 方法
+                  data: {
+                    openid: openid
+                  },
+                  header: {
+                    'content-type': 'application/json' // 默认值
+                  },
+                  success: res => {
+                    if (res.data.exists) {
+                      // 用户已经注册，直接登录
+                      wx.showToast({
+                        title: '登录成功',
+                        icon: 'success',
+                        duration: 2000
+                      });
+                      // 跳转到主页面
+                      wx.switchTab({
+                        url: '/pages/main/main'
+                      });
+                    } else {
+                      // 用户未注册，跳转到注册页面
+                      wx.navigateTo({
+                        url: `/pages/userInfo/userInfo?role=${role}&openid=${openid}`
+                      });
+                    }
+                  },
+                  fail: error => {
+                    console.error('检查用户失败', error);
+                    wx.showToast({
+                      title: '登录失败',
+                      icon: 'none',
+                      duration: 2000
+                    });
+                  }
                 });
               },
               fail: error => {
