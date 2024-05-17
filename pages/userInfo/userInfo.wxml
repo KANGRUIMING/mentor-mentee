@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="form">
+    <text>姓名</text>
+    <input type="text" placeholder="请输入姓名" bindinput="handleInput" data-field="name"/>
+    <text>学号/工号</text>
+    <input type="text" placeholder="请输入学号或工号" bindinput="handleInput" data-field="eid"/>
+    <text>学年/职称</text>
+    <input type="text" placeholder="请输入学年或职称" bindinput="handleInput" data-field="year"/>
+    <text>专业/教研方向</text>
+    <input type="text" placeholder="请输入专业或教研方向" bindinput="handleInput" data-field="major"/>
+    <text>照片</text>
+    <button bindtap="chooseImage">上传照片</button>
+    <image src="{{photo}}" mode="aspectFit" wx:if="{{photo}}"/>
+    <button bindtap="submitInfo">提交</button>
+  </view>
+</view>
