@@ -1,66 +1,61 @@
-// pages/student/home/home.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+    data: {
+      name: '',
+      eid: '',
+      year: '',
+      major: '',
+      wechat: '',
+      photo: '',
+      roleText: ''
+    },
+    onLoad() {
+      const openid = wx.getStorageSync('openid');
+      if (openid) {
+        wx.request({
+          url: 'http://localhost:3000/getuserinfo',
+          method: 'POST',
+          data: {
+            openid: openid
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: res => {
+            if (res.data.success) {
+              const roleText = res.data.user.role ? '导师' : '学生';
+              this.setData({
+                name: res.data.user.name,
+                eid: res.data.user.eid,
+                year: res.data.user.year,
+                major: res.data.user.major,
+                wechat: res.data.user.wechat,
+                photo: res.data.user.photo,
+                roleText: roleText
+              });
+            } else {
+              wx.showToast({
+                title: '获取用户信息失败',
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          },
+          fail: error => {
+            console.error('获取用户信息失败', error);
+            wx.showToast({
+              title: '获取用户信息失败',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        });
+      } else {
+        wx.showToast({
+          title: '用户未登录',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    }
+  });
+  
