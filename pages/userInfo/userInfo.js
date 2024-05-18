@@ -5,6 +5,7 @@ Page({
       eid: '',
       year: '',
       major: '',
+      wechat: '',
       photo: '',
       openid: ''
     },
@@ -34,8 +35,8 @@ Page({
       });
     },
     submitInfo: function() {
-      const { name, eid, year, major, photo, role, openid } = this.data;
-      if (!name || !eid || !year || !major || !photo) {
+      const { name, eid, year, major, wechat, photo, role, openid } = this.data;
+      if (!name || !eid || !year || !major || !wechat || !photo) {
         wx.showToast({
           title: '请填写所有信息',
           icon: 'none',
@@ -54,6 +55,7 @@ Page({
           eid,
           year,
           major,
+          wechat,
           role,
           openid
         },

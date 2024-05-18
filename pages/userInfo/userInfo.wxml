@@ -8,6 +8,8 @@
     <input type="text" placeholder="请输入学年或职称" bindinput="handleInput" data-field="year"/>
     <text>专业/教研方向</text>
     <input type="text" placeholder="请输入专业或教研方向" bindinput="handleInput" data-field="major"/>
+    <text>微信号</text>
+    <input type="text" placeholder="请输入微信号" bindinput="handleInput" data-field="wechat"/>
     <text>照片</text>
     <button bindtap="chooseImage">上传照片</button>
     <image src="{{photo}}" mode="aspectFit" wx:if="{{photo}}"/>
