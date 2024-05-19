@@ -23,13 +23,15 @@ Page({
           success: res => {
             if (res.data.success) {
               const roleText = res.data.user.role ? '导师' : '学生';
+              // 设置图片路径为服务器上的完整路径
+              const photoPath = `http://localhost:3000/${res.data.user.photo}`;
               this.setData({
                 name: res.data.user.name,
                 eid: res.data.user.eid,
                 year: res.data.user.year,
                 major: res.data.user.major,
                 wechat: res.data.user.wechat,
-                photo: res.data.user.photo,
+                photo: photoPath,
                 roleText: roleText
               });
             } else {
@@ -58,4 +60,3 @@ Page({
       }
     }
   });
-  
