@@ -1,0 +1,12 @@
+<view class="container">
+  <block wx:for="{{students}}" wx:key="openid">
+    <view class="student" bindtap="viewStudentDetail" data-id="{{item._id}}">
+      <image src="{{item.photo}}" mode="aspectFit" class="avatar"/>
+      <view class="info">
+        <text>姓名: {{item.name}}</text>
+        <text>学年: {{item.year}}</text>
+        <text>专业: {{item.major}}</text>
+      </view>
+    </view>
+  </block>
+</view>

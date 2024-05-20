@@ -6,7 +6,8 @@
       "pages/teacher/home/home",
       "pages/student/home/home",
       "pages/main/main",
-      "pages/userInfo/userInfo"  
+      "pages/userInfo/userInfo" ,
+      "pages/studentinfo/studentinfo"
     ],
     "window": {
       "navigationBarTextStyle": "black",
@@ -27,6 +28,10 @@
           "pagePath": "pages/teacher/home/home",
           "text": "导师信息"
         },
+        {
+            "pagePath": "pages/studentinfo/studentinfo",
+            "text": "学生信息"
+          },
         {
           "pagePath": "pages/student/home/home",
           "text": "我的信息"
