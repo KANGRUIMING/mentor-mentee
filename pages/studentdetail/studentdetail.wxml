@@ -1,19 +1,15 @@
 <view class="container">
-  <view class="userinfo">
-    <text class="title">个人信息</text>
-    <text>姓名: {{name}}</text>
-    <text>学号/工号: {{eid}}</text>
-    <text>学年/职称: {{year}}</text>
-    <text>专业/教研方向: {{major}}</text>
-    <text>微信号: {{wechat}}</text>
-    <text>身份: {{roleText}}</text>
-    <image src="{{photo}}" mode="aspectFit" wx:if="{{photo}}"/>
-    <!-- 其他信息 -->
-    <view wx:if="{{otherInfo}}">
+  <image src="{{student.photo}}" mode="aspectFit" class="avatar" wx:if="{{student.photo}}"/>
+  <view class="info">
+    <text>姓名: {{student.name}}</text>
+    <text>学年/职称: {{student.year}}</text>
+    <text>专业/教研方向: {{student.major}}</text>
+    <text>微信号: {{student.wechat}}</text>
+    <text>身份: {{student.role ? '导师' : '学生'}}</text>
+    <view wx:if="{{student.otherInfo}}">
       <text>其他信息:</text>
-      <image wx:if="{{otherInfo.image}}" src="{{otherInfo.image}}" mode="aspectFit" />
-      <text wx:if="{{otherInfo.text}}">{{otherInfo.text}}</text>
+      <image src="{{student.otherInfo.image}}" mode="aspectFit" wx:if="{{student.otherInfo.image}}"/>
+      <text wx:if="{{student.otherInfo.text}}">{{student.otherInfo.text}}</text>
     </view>
   </view>
-  <button bindtap="editInfo">添加/修改信息</button>
 </view>

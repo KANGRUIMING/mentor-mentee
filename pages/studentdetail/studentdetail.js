@@ -12,9 +12,14 @@ Page({
         method: 'GET',
         success: res => {
           if (res.data.success) {
-            this.setData({
-              student: res.data.student
-            });
+            const student = res.data.student;
+            if (student.photo) {
+              student.photo = `http://localhost:3000/${student.photo}`;
+            }
+            if (student.otherInfo && student.otherInfo.image) {
+              student.otherInfo.image = `http://localhost:3000/${student.otherInfo.image}`;
+            }
+            this.setData({ student });
           } else {
             wx.showToast({
               title: '获取学生详细信息失败',
