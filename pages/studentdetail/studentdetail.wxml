@@ -1,0 +1,10 @@
+<view class="container">
+  <image src="http://localhost:3000/{{student.photo}}" mode="aspectFit" class="avatar"/>
+  <view class="info">
+    <text>姓名: {{student.name}}</text>
+    <text>学号: {{student.eid}}</text>
+    <text>学年: {{student.year}}</text>
+    <text>专业: {{student.major}}</text>
+    <text>微信: {{student.wechat}}</text>
+  </view>
+</view>
