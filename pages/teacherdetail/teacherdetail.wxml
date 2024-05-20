@@ -1,0 +1,14 @@
+<view class="container">
+  <image src="{{teacher.photo}}" mode="aspectFit" class="avatar" wx:if="{{teacher.photo}}"/>
+  <view class="info">
+    <text>姓名: {{teacher.name}}</text>
+    <text>职称: {{teacher.year}}</text>
+    <text>教研方向: {{teacher.major}}</text>
+    <text>微信号: {{teacher.wechat}}</text>
+    <view wx:if="{{teacher.otherInfo}}">
+      <text>其他信息:</text>
+      <image src="{{teacher.otherInfo.image}}" mode="aspectFit" wx:if="{{teacher.otherInfo.image}}"/>
+      <text wx:if="{{teacher.otherInfo.text}}">{{teacher.otherInfo.text}}</text>
+    </view>
+  </view>
+</view>

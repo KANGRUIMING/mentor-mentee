@@ -1,3 +1,4 @@
+<!-- 注意！！！Studnet Home是右小角所有人的主页‘我的信息’；不要与学生信息混淆-->
 <view class="container">
   <view class="userinfo">
     <text class="title">个人信息</text>

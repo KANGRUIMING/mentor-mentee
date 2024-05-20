@@ -1,66 +1,53 @@
-// pages/teacher/home/home.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+    data: {
+      teachers: []
+    },
+    onLoad() {
+      this.getTeachers();
+    },
+    getTeachers() {
+      wx.request({
+        url: 'http://localhost:3000/teachers', // 使用你的服务器 IP 地址
+        method: 'GET',
+        success: res => {
+          if (res.data.success) {
+            const teachers = res.data.teachers.map(teacher => {
+              return {
+                ...teacher,
+                photo: `http://localhost:3000/${teacher.photo}`
+              };
+            });
+            this.setData({
+              teachers
+            });
+          } else {
+            wx.showToast({
+              title: '获取导师信息失败',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        },
+        fail: error => {
+          console.error('获取导师信息失败', error);
+          wx.showToast({
+            title: '获取导师信息失败',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      });
+    },
+    viewTeacherDetail(e) {
+      const teacherId = e.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: `/pages/teacherdetail/teacherdetail?id=${teacherId}`
+      });
+    },
+    editInfo() {
+      wx.navigateTo({
+        url: '/pages/teacher/editinfo/editinfo'
+      });
+    }
+  });
+  

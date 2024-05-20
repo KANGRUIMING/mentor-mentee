@@ -9,7 +9,8 @@
       "pages/userInfo/userInfo" ,
       "pages/studentinfo/studentinfo",
       "pages/studentdetail/studentdetail",
-      "pages/student/editinfo/editinfo"
+      "pages/student/editinfo/editinfo",
+      "pages/teacherdetail/teacherdetail"
     ],
     "window": {
       "navigationBarTextStyle": "black",
