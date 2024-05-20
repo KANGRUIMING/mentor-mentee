@@ -1,6 +1,6 @@
 <view class="container">
   <view class="header">
-    <text class="title">导师选择评系统</text>
+    <text class="title">mentor-mentee</text>
   </view>
   <view class="content">
     <image src="/images/student_study.png" class="main-image"></image>
