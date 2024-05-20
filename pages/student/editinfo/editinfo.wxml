@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="form">
+    <input placeholder="姓名" value="{{name}}" data-field="name" bindinput="bindInputChange"/>
+    <input placeholder="学号/工号" value="{{eid}}" data-field="eid" bindinput="bindInputChange"/>
+    <input placeholder="学年/职称" value="{{year}}" data-field="year" bindinput="bindInputChange"/>
+    <input placeholder="专业/教研方向" value="{{major}}" data-field="major" bindinput="bindInputChange"/>
+    <input placeholder="微信号" value="{{wechat}}" data-field="wechat" bindinput="bindInputChange"/>
+    <textarea placeholder="其他信息（文字）" value="{{otherInfoText}}" data-field="otherInfoText" bindinput="bindInputChange"></textarea>
+    <button bindtap="chooseImage">选择其他信息图片</button>
+    <image src="{{otherInfoImage}}" mode="aspectFit" wx:if="{{otherInfoImage}}"/>
+    <button bindtap="choosePhoto">选择头像</button>
+    <image src="{{newPhoto || photo}}" mode="aspectFit" wx:if="{{newPhoto || photo}}"/>
+    <button bindtap="saveInfo">保存信息</button>
+  </view>
+</view>

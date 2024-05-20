@@ -7,6 +7,13 @@
     <text>专业/教研方向: {{major}}</text>
     <text>微信号: {{wechat}}</text>
     <text>身份: {{roleText}}</text>
-    <image src="{{photo}}" mode="aspectFit" wx:if="{{photo}}" style="width: 200px; height: 200px;"/>
+    <image src="{{photo}}" mode="aspectFit" wx:if="{{photo}}" style="width: 100px; height: 100px;"/>
+    <!-- 其他信息 -->
+    <view wx:if="{{otherInfo}}">
+      <text>其他信息:</text>
+      <image wx:if="{{otherInfo.image}}" src="{{otherInfo.image}}" mode="aspectFit" />
+      <text wx:if="{{otherInfo.text}}">{{otherInfo.text}}</text>
+    </view>
   </view>
+  <button bindtap="editInfo">添加/修改信息</button>
 </view>

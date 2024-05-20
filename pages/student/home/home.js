@@ -6,25 +6,28 @@ Page({
       major: '',
       wechat: '',
       photo: '',
-      roleText: ''
+      roleText: '',
+      otherInfo: {}
     },
     onLoad() {
+      this.getUserInfo();
+    },
+    getUserInfo() {
       const openid = wx.getStorageSync('openid');
       if (openid) {
         wx.request({
           url: 'http://localhost:3000/getuserinfo',
           method: 'POST',
-          data: {
-            openid: openid
-          },
-          header: {
-            'content-type': 'application/json'
-          },
+          data: { openid },
+          header: { 'content-type': 'application/json' },
           success: res => {
             if (res.data.success) {
               const roleText = res.data.user.role ? '导师' : '学生';
-              // 设置图片路径为服务器上的完整路径
               const photoPath = `http://localhost:3000/${res.data.user.photo}`;
+              const otherInfo = res.data.user.otherInfo || {};
+              if (otherInfo.image) {
+                otherInfo.image = `http://localhost:3000/${otherInfo.image}`;
+              }
               this.setData({
                 name: res.data.user.name,
                 eid: res.data.user.eid,
@@ -32,7 +35,8 @@ Page({
                 major: res.data.user.major,
                 wechat: res.data.user.wechat,
                 photo: photoPath,
-                roleText: roleText
+                roleText,
+                otherInfo
               });
             } else {
               wx.showToast({
@@ -58,5 +62,11 @@ Page({
           duration: 2000
         });
       }
+    },
+    editInfo() {
+      wx.navigateTo({
+        url: '/pages/student/editinfo/editinfo'
+      });
     }
   });
+  

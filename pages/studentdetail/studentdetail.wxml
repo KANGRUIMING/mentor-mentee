@@ -1,10 +1,19 @@
 <view class="container">
-  <image src="http://localhost:3000/{{student.photo}}" mode="aspectFit" class="avatar"/>
-  <view class="info">
-    <text>姓名: {{student.name}}</text>
-    <text>学号: {{student.eid}}</text>
-    <text>学年: {{student.year}}</text>
-    <text>专业: {{student.major}}</text>
-    <text>微信: {{student.wechat}}</text>
+  <view class="userinfo">
+    <text class="title">个人信息</text>
+    <text>姓名: {{name}}</text>
+    <text>学号/工号: {{eid}}</text>
+    <text>学年/职称: {{year}}</text>
+    <text>专业/教研方向: {{major}}</text>
+    <text>微信号: {{wechat}}</text>
+    <text>身份: {{roleText}}</text>
+    <image src="{{photo}}" mode="aspectFit" wx:if="{{photo}}"/>
+    <!-- 其他信息 -->
+    <view wx:if="{{otherInfo}}">
+      <text>其他信息:</text>
+      <image wx:if="{{otherInfo.image}}" src="{{otherInfo.image}}" mode="aspectFit" />
+      <text wx:if="{{otherInfo.text}}">{{otherInfo.text}}</text>
+    </view>
   </view>
+  <button bindtap="editInfo">添加/修改信息</button>
 </view>
